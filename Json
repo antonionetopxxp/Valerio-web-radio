@@ -1,1 +1,7 @@
-
+{
+  "scripts": {
+    "build": "webpack --mode production",
+    "test": "jest",
+    "test:e2e": "playwright test"
+  }
+}
