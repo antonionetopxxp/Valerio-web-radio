@@ -1,1695 +1,1323 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
 
-```css
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
-    --roxo: #6c5ce7;
-    --roxo-claro: #8f7cff;
-    --roxo-escuro: #4b3ac4;
-    --azul: #071126;
-    --azul-2: #101a35;
-    --branco: #ffffff;
-    --cinza: #697187;
-    --fundo: #f7f8fc;
-    --borda: rgba(20, 28, 55, 0.10);
-    --sombra: 0 25px 70px rgba(26, 23, 75, 0.14);
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: "Inter", Arial, sans-serif;
-    background: var(--fundo);
-    color: #11182c;
-    overflow-x: hidden;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-button,
-input {
-    font-family: inherit;
-}
-
-/* =========================
-   FUNDO
-========================= */
+<head>
 
-.background-glow {
-    position: fixed;
-    width: 650px;
-    height: 650px;
-    right: -300px;
-    top: -300px;
-    background: radial-gradient(
-        circle,
-        rgba(108, 92, 231, 0.22),
-        transparent 68%
-    );
-    pointer-events: none;
-    z-index: -1;
-}
+    <meta charset="UTF-8">
 
-/* =========================
-   MENU
-========================= */
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-.topbar {
-    height: 82px;
-    padding: 0 clamp(18px, 5vw, 75px);
+    <meta
+        name="theme-color"
+        content="#ff7a00"
+    >
 
-    display: flex;
-    align-items: center;
+    <meta
+        name="description"
+        content="JRV Rádio Web - Forró, alegria, música e informação."
+    >
 
-    gap: 28px;
+    <title>
+        JRV Rádio Web | Forró e Alegria
+    </title>
 
-    background: rgba(255, 255, 255, 0.90);
+    <link
+        rel="icon"
+        href="assets/favicon.svg"
+        type="image/svg+xml"
+    >
 
-    backdrop-filter: blur(20px);
+    <!-- FONTES -->
 
-    border-bottom: 1px solid var(--borda);
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
 
-    position: sticky;
-    top: 0;
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
-    z-index: 999;
-}
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap"
+        rel="stylesheet"
+    >
 
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 11px;
+    <!-- CSS -->
 
-    min-width: max-content;
-}
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 
-.logo-box {
-    width: 45px;
-    height: 45px;
+</head>
 
-    display: grid;
-    place-items: center;
 
-    border-radius: 13px;
+<body>
 
-    color: white;
 
-    font-weight: 900;
-    font-size: 13px;
+<!-- =====================================================
+     FUNDO
+===================================================== -->
 
-    background:
-        linear-gradient(
-            135deg,
-            var(--roxo),
-            var(--roxo-escuro)
-        );
+<div class="background-glow"></div>
 
-    box-shadow:
-        0 12px 30px
-        rgba(108, 92, 231, 0.30);
-}
+<div class="background-glow second"></div>
 
-.logo-text strong {
-    display: block;
 
-    font-family: "Montserrat", sans-serif;
 
-    font-size: 14px;
+<!-- =====================================================
+     MENU
+===================================================== -->
 
-    letter-spacing: 0.5px;
-}
+<header class="topbar">
 
-.logo-text span {
-    display: block;
+    <a
+        href="#inicio"
+        class="logo"
+    >
 
-    margin-top: 3px;
+        <div class="logo-box">
 
-    color: #8a91a5;
+            JRV
 
-    font-size: 9px;
-}
+        </div>
 
-nav {
-    display: flex;
 
-    gap: 27px;
+        <div class="logo-text">
 
-    margin-left: auto;
-}
+            <strong>
+                JRV RÁDIO WEB
+            </strong>
 
-nav a {
-    color: #596176;
+            <span>
+                Forró, música e alegria
+            </span>
 
-    font-size: 13px;
+        </div>
 
-    font-weight: 700;
+    </a>
 
-    transition: 0.2s;
-}
 
-nav a:hover {
-    color: var(--roxo);
-}
 
-.live-button {
-    display: flex;
-    align-items: center;
+    <!-- MENU MOBILE -->
 
-    gap: 8px;
+    <button
+        class="menu-button"
+        id="menuButton"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+    >
 
-    padding: 12px 17px;
+        <span></span>
+        <span></span>
+        <span></span>
 
-    color: white;
+    </button>
 
-    background: #10172b;
 
-    border-radius: 13px;
 
-    font-size: 10px;
+    <!-- MENU -->
 
-    font-weight: 900;
+    <nav id="menu">
 
-    letter-spacing: 0.8px;
-}
+        <a href="#inicio">
+            Início
+        </a>
 
-.live-dot {
-    width: 8px;
-    height: 8px;
+        <a href="#radio">
+            Ouça ao vivo
+        </a>
 
-    background: #ff4f68;
+        <a href="#programacao">
+            Programação
+        </a>
 
-    border-radius: 50%;
+        <a href="#destaques">
+            Destaques
+        </a>
 
-    display: inline-block;
+        <a href="#contato">
+            Contato
+        </a>
 
-    box-shadow:
-        0 0 0 5px rgba(255, 79, 104, 0.13);
+    </nav>
 
-    animation: pulse 1.5s infinite;
-}
 
-@keyframes pulse {
 
-    50% {
-        box-shadow:
-            0 0 0 10px rgba(255, 79, 104, 0);
-    }
-}
+    <!-- AO VIVO -->
 
-.menu-button {
-    display: none;
+    <a
+        href="#radio"
+        class="live-button"
+    >
 
-    margin-left: auto;
+        <span class="live-dot"></span>
 
-    border: 0;
+        AO VIVO
 
-    background: transparent;
+    </a>
 
-    cursor: pointer;
-}
+</header>
 
-.menu-button span {
-    display: block;
 
-    width: 25px;
-    height: 2px;
 
-    margin: 5px;
+<!-- =====================================================
+     CONTEÚDO
+===================================================== -->
 
-    background: #11182c;
+<main>
 
-    border-radius: 10px;
-}
 
-/* =========================
-   HERO
-========================= */
 
-.hero {
-    max-width: 1450px;
+<!-- =====================================================
+     HERO
+===================================================== -->
 
-    min-height: calc(100vh - 82px);
+<section
+    class="hero"
+    id="inicio"
+>
 
-    margin: auto;
 
-    padding:
-        70px
-        clamp(20px, 6vw, 100px);
+    <!-- TEXTO -->
 
-    display: grid;
+    <div class="hero-content">
 
-    grid-template-columns:
-        1fr
-        1fr;
 
-    align-items: center;
+        <div class="eyebrow">
 
-    gap: 60px;
-}
+            <span class="live-dot"></span>
 
-.hero-content {
-    animation: heroIn 0.8s ease both;
-}
+            JRV RÁDIO WEB • AO VIVO
 
-@keyframes heroIn {
+        </div>
 
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
 
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
-.eyebrow {
-    display: flex;
-    align-items: center;
+        <h1>
 
-    gap: 10px;
+            O ritmo do
+            <span>
+                forró.
+            </span>
 
-    color: var(--roxo);
+            A alegria
+            <span>
+                da JRV.
+            </span>
 
-    font-size: 10px;
+        </h1>
 
-    font-weight: 900;
 
-    letter-spacing: 2px;
-}
 
-.hero h1 {
-    margin: 20px 0;
+        <p>
 
-    font-family: "Montserrat", sans-serif;
+            A rádio que leva música,
+            forró, informação e muita
+            alegria para você,
+            onde estiver.
 
-    font-size: clamp(
-        45px,
-        5.5vw,
-        78px
-    );
+        </p>
 
-    line-height: 1.02;
 
-    letter-spacing: -3px;
-}
 
-.hero h1 span {
-    display: block;
+        <!-- BOTÕES -->
 
-    color: var(--roxo);
-}
+        <div class="hero-buttons">
 
-.hero-content > p {
-    max-width: 580px;
 
-    color: var(--cinza);
+            <a
+                href="#radio"
+                class="button primary"
+            >
 
-    font-size: 17px;
+                <span class="play-icon">
+                    ▶
+                </span>
 
-    line-height: 1.7;
-}
+                OUVIR AGORA
 
-.hero-buttons {
-    display: flex;
+            </a>
 
-    gap: 12px;
 
-    margin-top: 30px;
 
-    flex-wrap: wrap;
-}
+            <a
+                href="#programacao"
+                class="button secondary"
+            >
 
-.button {
-    display: inline-flex;
+                VER PROGRAMAÇÃO
 
-    align-items: center;
+            </a>
 
-    justify-content: center;
+        </div>
 
-    gap: 8px;
 
-    min-height: 48px;
 
-    padding: 0 21px;
+        <!-- ESTATÍSTICAS -->
 
-    border-radius: 13px;
+        <div class="statistics">
 
-    font-size: 12px;
 
-    font-weight: 900;
+            <div>
 
-    transition: 0.25s;
-}
+                <strong>
+                    24H
+                </strong>
 
-.button:hover {
-    transform: translateY(-3px);
-}
+                <span>
+                    NO AR
+                </span>
 
-.button.primary {
-    color: white;
+            </div>
 
-    background:
-        linear-gradient(
-            135deg,
-            var(--roxo),
-            var(--roxo-escuro)
-        );
 
-    box-shadow:
-        0 15px 30px
-        rgba(108, 92, 231, 0.25);
-}
 
-.button.secondary {
-    color: #252d43;
+            <div>
 
-    background: white;
+                <strong>
+                    ♫
+                </strong>
 
-    border: 1px solid #dfe2ec;
-}
+                <span>
+                    FORRÓ
+                </span>
 
-.button.outline {
-    color: white;
+            </div>
 
-    border: 1px solid
-        rgba(255,255,255,0.25);
-}
 
-.statistics {
-    display: flex;
 
-    gap: 35px;
+            <div>
 
-    margin-top: 42px;
-}
+                <strong>
+                    JRV
+                </strong>
 
-.statistics div {
-    display: flex;
+                <span>
+                    RÁDIO WEB
+                </span>
 
-    flex-direction: column;
+            </div>
 
-    gap: 4px;
-}
 
-.statistics strong {
-    font-family: "Montserrat";
+        </div>
 
-    font-size: 21px;
-}
 
-.statistics span {
-    color: #8b92a5;
+    </div>
 
-    font-size: 9px;
 
-    font-weight: 800;
 
-    letter-spacing: 1px;
-}
+    <!-- =================================================
+         ARTE PRINCIPAL
+    ================================================= -->
 
-/* =========================
-   CARD HERO
-========================= */
+    <div class="hero-visual">
 
-.hero-visual {
-    animation: visualIn 1s ease both;
-}
 
-@keyframes visualIn {
+        <div class="radio-card">
 
-    from {
-        opacity: 0;
-        transform:
-            translateY(40px)
-            rotate(3deg);
-    }
 
-    to {
-        opacity: 1;
-        transform:
-            translateY(0)
-            rotate(0);
-    }
-}
+            <!-- CABEÇALHO -->
 
-.radio-card {
-    padding: 12px;
+            <div class="radio-card-header">
 
-    background: white;
+                <strong>
+                    JRV RÁDIO WEB
+                </strong>
 
-    border-radius: 27px;
 
-    box-shadow: var(--sombra);
+                <span>
 
-    transform: rotate(1deg);
-}
+                    <i class="live-dot"></i>
 
-.radio-card-header,
-.radio-card-footer {
-    display: flex;
+                    LIVE
 
-    align-items: center;
+                </span>
 
-    justify-content: space-between;
+            </div>
 
-    padding: 13px;
-}
 
-.radio-card-header {
-    font-size: 10px;
 
-    font-weight: 900;
+            <!-- ARTE -->
 
-    letter-spacing: 1px;
-}
+            <div class="radio-cover">
 
-.radio-card-header span {
-    display: flex;
 
-    align-items: center;
+                <div class="cover-decoration decoration-one">
+                    ✦
+                </div>
 
-    gap: 8px;
 
-    color: #ff4f68;
-}
+                <div class="cover-decoration decoration-two">
+                    ✦
+                </div>
 
-.radio-cover {
-    height: min(52vw, 570px);
 
-    min-height: 360px;
+                <div class="cover-content">
 
-    position: relative;
 
-    overflow: hidden;
+                    <div class="cover-logo">
 
-    border-radius: 19px;
+                        JRV
 
-    display: flex;
+                    </div>
 
-    flex-direction: column;
 
-    align-items: center;
+                    <div class="cover-title">
 
-    justify-content: center;
+                        RÁDIO WEB
 
-    background:
-        radial-gradient(
-            circle at 70% 25%,
-            #9585ff,
-            transparent 35%
-        ),
-        linear-gradient(
-            135deg,
-            #101b3b,
-            #6c5ce7 55%,
-            #251a70
-        );
-}
+                    </div>
 
-.cover-gradient {
-    text-align: center;
 
-    color: white;
+                    <div class="cover-subtitle">
 
-    position: relative;
+                        FORRÓ • MÚSICA • ALEGRIA
 
-    z-index: 2;
-}
+                    </div>
 
-.cover-logo {
-    width: 130px;
-    height: 130px;
 
-    margin: auto;
+                    <div class="cover-note">
 
-    display: grid;
-    place-items: center;
+                        ♪ ♫ ♪
 
-    border-radius: 50%;
+                    </div>
 
-    border:
-        7px solid
-        rgba(255,255,255,0.15);
 
-    background:
-        linear-gradient(
-            135deg,
-            #8f7cff,
-            #4c39c4
-        );
+                </div>
 
-    box-shadow:
-        0 30px 70px
-        rgba(0,0,0,0.30);
 
-    font-family: "Montserrat";
+                <!-- NOTAS MUSICAIS -->
 
-    font-size: 35px;
+                <div class="music-symbol symbol-one">
+                    ♪
+                </div>
 
-    font-weight: 900;
-}
 
-.cover-title {
-    margin-top: 22px;
+                <div class="music-symbol symbol-two">
+                    ♫
+                </div>
 
-    font-family: "Montserrat";
 
-    font-size: 30px;
+                <div class="music-symbol symbol-three">
+                    ♪
+                </div>
 
-    font-weight: 900;
 
-    letter-spacing: 4px;
-}
+            </div>
 
-.cover-subtitle {
-    margin-top: 9px;
 
-    font-size: 10px;
 
-    letter-spacing: 4px;
+            <!-- RODAPÉ DA ARTE -->
 
-    opacity: 0.8;
-}
+            <div class="radio-card-footer">
 
-.music-symbol {
-    position: absolute;
 
-    width: 50px;
-    height: 50px;
+                <div>
 
-    display: grid;
-    place-items: center;
+                    <small>
+                        AGORA
+                    </small>
 
-    color: var(--roxo);
+                    <strong>
+                        JRV Rádio Web
+                    </strong>
 
-    background: white;
+                </div>
 
-    border-radius: 15px;
 
-    font-size: 24px;
 
-    box-shadow:
-        0 15px 30px
-        rgba(0,0,0,0.18);
+                <!-- EQUALIZADOR -->
 
-    animation: float 3s infinite ease-in-out;
-}
+                <div class="equalizer">
 
-.symbol-one {
-    top: 25px;
-    right: 25px;
-}
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
+                    <i></i>
 
-.symbol-two {
-    bottom: 40px;
-    left: 25px;
+                </div>
 
-    animation-delay: 0.7s;
-}
 
-@keyframes float {
+            </div>
 
-    50% {
-        transform:
-            translateY(-10px)
-            rotate(5deg);
-    }
-}
 
-.radio-card-footer small {
-    display: block;
+        </div>
 
-    color: #9ca3b4;
 
-    font-size: 8px;
+    </div>
 
-    margin-bottom: 4px;
-}
 
-.radio-card-footer strong {
-    font-size: 12px;
-}
+</section>
 
-.equalizer {
-    display: flex;
 
-    align-items: center;
 
-    gap: 4px;
+<!-- =====================================================
+     PLAYER
+===================================================== -->
 
-    height: 25px;
-}
+<section
+    class="section"
+    id="radio"
+>
 
-.equalizer i {
-    width: 4px;
 
-    background: var(--roxo);
+    <div class="section-title">
 
-    border-radius: 5px;
 
-    animation:
-        equalizer
-        0.7s
-        infinite
-        alternate;
-}
+        <div>
 
-.equalizer i:nth-child(1) {
-    height: 9px;
-}
+            <span>
+                TRANSMISSÃO
+            </span>
 
-.equalizer i:nth-child(2) {
-    height: 19px;
 
-    animation-delay: .1s;
-}
+            <h2>
 
-.equalizer i:nth-child(3) {
-    height: 13px;
+                Ouça a JRV
 
-    animation-delay: .2s;
-}
+                <strong>
+                    ao vivo
+                </strong>
 
-.equalizer i:nth-child(4) {
-    height: 22px;
+            </h2>
 
-    animation-delay: .3s;
-}
+        </div>
 
-.equalizer i:nth-child(5) {
-    height: 8px;
 
-    animation-delay: .4s;
-}
+        <p>
 
-@keyframes equalizer {
+            Entre na transmissão
+            e deixe o forró fazer
+            parte do seu dia.
 
-    to {
-        transform: scaleY(.4);
-    }
-}
+        </p>
 
-/* =========================
-   SEÇÕES
-========================= */
 
-.section {
-    max-width: 1250px;
+    </div>
 
-    margin: auto;
 
-    padding:
-        105px 24px;
-}
 
-.section-title {
-    display: flex;
+    <div class="player-layout">
 
-    align-items: end;
 
-    justify-content: space-between;
+        <!-- =================================================
+             PLAYER PRINCIPAL
+        ================================================= -->
 
-    gap: 30px;
+        <div class="player">
 
-    margin-bottom: 35px;
-}
 
-.section-title > div > span,
-.highlight > div > span,
-.contact > div > span {
-    color: var(--roxo);
+            <div class="player-live">
 
-    font-size: 9px;
+                <span class="live-dot"></span>
 
-    font-weight: 900;
+                JRV RÁDIO WEB • TRANSMISSÃO ONLINE
 
-    letter-spacing: 2px;
-}
+            </div>
 
-.section-title h2,
-.highlight h2,
-.contact h2 {
-    margin-top: 9px;
 
-    font-family: "Montserrat";
 
-    font-size: clamp(
-        32px,
-        4vw,
-        48px
-    );
+            <!-- DISCO -->
 
-    letter-spacing: -1.5px;
-}
+            <div class="vinyl">
 
-.section-title h2 strong,
-.highlight h2 strong,
-.contact h2 strong {
-    color: var(--roxo);
-}
 
-.section-title > p {
-    max-width: 420px;
+                <div class="vinyl-center">
 
-    color: var(--cinza);
+                    JRV
 
-    font-size: 13px;
+                </div>
 
-    line-height: 1.6;
-}
 
-/* =========================
-   PLAYER
-========================= */
+            </div>
 
-.player-layout {
-    display: grid;
 
-    grid-template-columns:
-        1.35fr
-        .8fr;
 
-    gap: 22px;
-}
+            <!-- MÚSICA -->
 
-.player {
-    position: relative;
+            <div class="now-playing">
 
-    overflow: hidden;
 
-    padding: 35px;
+                <small>
+                    TOCANDO AGORA
+                </small>
 
-    color: white;
 
-    border-radius: 28px;
+                <h3 id="musicTitle">
+                    JRV Rádio Web
+                </h3>
 
-    background:
-        radial-gradient(
-            circle at 80% 15%,
-            rgba(108,92,231,.55),
-            transparent 35%
-        ),
-        linear-gradient(
-            145deg,
-            #080f23,
-            #171f42
-        );
 
-    box-shadow: var(--sombra);
-}
+                <p id="musicArtist">
+                    Forró, música e alegria
+                </p>
 
-.player-live {
-    display: flex;
 
-    align-items: center;
+            </div>
 
-    gap: 9px;
 
-    font-size: 9px;
 
-    font-weight: 900;
+            <!-- CONTROLES -->
 
-    letter-spacing: 2px;
-}
+            <div class="player-controls">
 
-.vinyl {
-    width: 190px;
-    height: 190px;
 
-    margin:
-        30px
-        auto;
+                <button
+                    class="control"
+                    id="muteButton"
+                    aria-label="Ativar ou desativar som"
+                >
 
-    display: grid;
+                    🔊
 
-    place-items: center;
+                </button>
 
-    border-radius: 50%;
 
-    background:
-        repeating-radial-gradient(
-            circle,
-            #070c19 0 7px,
-            #121a2d 8px 10px
-        );
 
-    box-shadow:
-        0 25px 50px
-        rgba(0,0,0,.40),
-        0 0 0 12px
-        rgba(108,92,231,.13);
+                <button
+                    class="play"
+                    id="playButton"
+                    aria-label="Tocar rádio"
+                >
 
-    animation:
-        spin 10s linear infinite;
-}
+                    ▶
 
-@keyframes spin {
+                </button>
 
-    to {
-        transform: rotate(360deg);
-    }
-}
 
-.vinyl-center {
-    width: 74px;
-    height: 74px;
 
-    display: grid;
-    place-items: center;
+                <button
+                    class="control"
+                    id="shareButton"
+                    aria-label="Compartilhar rádio"
+                >
 
-    border-radius: 50%;
+                    ↗
 
-    color: white;
+                </button>
 
-    font-family: "Montserrat";
 
-    font-size: 15px;
+            </div>
 
-    font-weight: 900;
 
-    background:
-        linear-gradient(
-            135deg,
-            var(--roxo),
-            #4936bb
-        );
 
-    box-shadow:
-        0 0 0 8px
-        rgba(255,255,255,.04);
-}
+            <!-- VOLUME -->
 
-.now-playing {
-    text-align: center;
-}
+            <div class="volume">
 
-.now-playing small {
-    color: #9fa8c2;
 
-    font-size: 8px;
+                <span>
+                    🔈
+                </span>
 
-    letter-spacing: 2px;
 
-    font-weight: 900;
-}
+                <input
+                    id="volumeControl"
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.01"
+                    value="0.8"
+                >
 
-.now-playing h3 {
-    margin: 8px 0 4px;
 
-    font-size: 21px;
-}
+                <span>
+                    🔊
+                </span>
 
-.now-playing p {
-    color: #aeb6ca;
 
-    font-size: 11px;
-}
+            </div>
 
-.player-controls {
-    display: flex;
 
-    align-items: center;
 
-    justify-content: center;
+            <!-- =================================================
+                 STREAM DA JRV
+            ================================================= -->
 
-    gap: 18px;
+            <audio
+                id="radioAudio"
+                preload="none"
+            >
 
-    margin: 22px 0;
-}
+                <source
+                    src="https://stream.zeno.fm/elhz4znig9wuv"
+                    type="audio/mpeg"
+                >
 
-.control,
-.play {
-    border: 0;
+            </audio>
 
-    cursor: pointer;
 
-    display: grid;
 
-    place-items: center;
+            <!-- STATUS -->
 
-    color: white;
+            <div class="player-message">
 
-    transition: .2s;
-}
 
-.control:hover,
-.play:hover {
-    transform: scale(1.08);
-}
+                <strong>
+                    JRV RÁDIO WEB
+                </strong>
 
-.control {
-    width: 42px;
-    height: 42px;
 
-    border-radius: 50%;
+                <span id="playerMessage">
 
-    background:
-        rgba(255,255,255,.08);
-}
+                    Clique no botão ▶
+                    para iniciar a transmissão.
 
-.play {
-    width: 66px;
-    height: 66px;
+                </span>
 
-    border-radius: 50%;
 
-    color: var(--roxo);
+            </div>
 
-    background: white;
 
-    font-size: 18px;
+        </div>
 
-    box-shadow:
-        0 12px 30px
-        rgba(0,0,0,.25);
-}
 
-.volume {
-    display: flex;
 
-    align-items: center;
+        <!-- =================================================
+             INFORMAÇÕES
+        ================================================= -->
 
-    gap: 10px;
+        <div class="information">
 
-    max-width: 350px;
 
-    margin: auto;
+            <div class="info-card orange">
 
-    color: #9ea7c0;
-}
 
-.volume input {
-    width: 100%;
+                <div class="info-icon">
+                    🎙️
+                </div>
 
-    accent-color: var(--roxo);
-}
 
-.player-message {
-    margin-top: 22px;
+                <div>
 
-    padding: 13px;
+                    <small>
+                        AO VIVO
+                    </small>
 
-    text-align: center;
 
-    border-radius: 12px;
+                    <h3>
+                        JRV Rádio Web
+                    </h3>
 
-    background:
-        rgba(255,255,255,.06);
-}
 
-.player-message strong {
-    display: block;
+                    <p>
+                        O melhor do forró
+                        e muita alegria.
+                    </p>
 
-    font-size: 10px;
-}
+                </div>
 
-.player-message span {
-    display: block;
 
-    margin-top: 4px;
+            </div>
 
-    color: #9da6bf;
 
-    font-size: 9px;
-}
 
-/* =========================
-   INFORMAÇÕES
-========================= */
+            <div class="info-card">
 
-.information {
-    display: grid;
 
-    gap: 14px;
-}
+                <div class="info-icon">
+                    🪗
+                </div>
 
-.info-card {
-    display: flex;
 
-    gap: 16px;
+                <div>
 
-    padding: 24px;
+                    <small>
+                        PROGRAMAÇÃO
+                    </small>
 
-    border-radius: 21px;
 
-    background: white;
+                    <h3>
+                        Forró o dia inteiro
+                    </h3>
 
-    border: 1px solid var(--borda);
 
-    box-shadow:
-        0 12px 30px
-        rgba(20,25,60,.05);
-}
+                    <p>
+                        Confira os horários
+                        dos nossos programas.
+                    </p>
 
-.info-card.purple {
-    color: white;
 
-    background:
-        linear-gradient(
-            135deg,
-            var(--roxo),
-            #4d3ac7
-        );
-}
+                    <a href="#programacao">
 
-.info-icon {
-    font-size: 27px;
-}
+                        Ver programação →
 
-.info-card small {
-    font-size: 8px;
+                    </a>
 
-    font-weight: 900;
+                </div>
 
-    letter-spacing: 1.5px;
 
-    opacity: .7;
-}
+            </div>
 
-.info-card h3 {
-    margin: 5px 0;
 
-    font-size: 15px;
-}
 
-.info-card p {
-    color: #70788d;
+            <div class="social-card">
 
-    font-size: 10px;
 
-    line-height: 1.6;
-}
+                <span>
+                    SIGA A JRV
+                </span>
 
-.info-card.purple p {
-    color: white;
 
-    opacity: .8;
-}
+                <div>
 
-.info-card a {
-    display: inline-block;
 
-    margin-top: 8px;
+                    <a
+                        href="https://www.instagram.com/"
+                        target="_blank"
+                        rel="noopener"
+                    >
 
-    color: var(--roxo);
+                        Instagram
 
-    font-size: 10px;
+                    </a>
 
-    font-weight: 900;
-}
 
-.social-card {
-    padding: 21px;
+                    <a
+                        href="https://wa.me/"
+                        target="_blank"
+                        rel="noopener"
+                    >
 
-    color: white;
+                        WhatsApp
 
-    border-radius: 21px;
+                    </a>
 
-    background: #11182d;
-}
 
-.social-card > span {
-    color: #9ea8c0;
+                </div>
 
-    font-size: 8px;
 
-    font-weight: 900;
+            </div>
 
-    letter-spacing: 2px;
-}
 
-.social-card > div {
-    display: flex;
+        </div>
 
-    gap: 9px;
 
-    margin-top: 13px;
-}
+    </div>
 
-.social-card a {
-    padding: 10px 13px;
 
-    border-radius: 9px;
+</section>
 
-    background:
-        rgba(255,255,255,.08);
 
-    font-size: 10px;
 
-    font-weight: 800;
-}
+<!-- =====================================================
+     PROGRAMAÇÃO
+===================================================== -->
 
-/* =========================
-   PROGRAMAÇÃO
-========================= */
+<section
+    class="programacao"
+    id="programacao"
+>
 
-.programacao {
-    background: white;
-}
 
-.section-small {
-    padding-top: 100px;
-}
+    <div class="section section-small">
 
-.centered {
-    display: block;
 
-    text-align: center;
-}
+        <div class="section-title centered">
 
-.centered > p {
-    margin:
-        10px
-        auto 35px;
-}
 
-.schedule {
-    display: grid;
+            <span>
+                JRV RÁDIO WEB
+            </span>
 
-    grid-template-columns:
-        1fr
-        1fr;
 
-    gap: 12px;
-}
+            <h2>
 
-.schedule-item {
-    display: grid;
+                Nossa
 
-    grid-template-columns:
-        70px
-        1fr
-        auto;
+                <strong>
+                    programação
+                </strong>
 
-    align-items: center;
+            </h2>
 
-    gap: 15px;
 
-    padding: 19px;
+            <p>
 
-    background: #fbfbfd;
+                Música, forró e
+                alegria durante todo o dia.
 
-    border:
-        1px solid
-        var(--borda);
+            </p>
 
-    border-radius: 16px;
-}
 
-.schedule-item.active {
-    background: #f4f1ff;
+        </div>
 
-    border-color:
-        rgba(108,92,231,.35);
-}
 
-.schedule-time {
-    color: var(--roxo);
 
-    font-family: "Montserrat";
+        <div class="schedule">
 
-    font-size: 16px;
-}
 
-.schedule-item strong {
-    display: block;
+            <div class="schedule-item active">
 
-    font-size: 13px;
-}
 
-.schedule-item span {
-    display: block;
+                <div class="schedule-time">
+                    06:00
+                </div>
 
-    margin-top: 4px;
 
-    color: #7d8497;
+                <div>
 
-    font-size: 9px;
-}
+                    <strong>
+                        Bom Dia JRV
+                    </strong>
 
-.schedule-item label {
-    padding: 7px 9px;
 
-    color: var(--roxo);
+                    <span>
+                        Comece o dia com muito forró.
+                    </span>
 
-    background: #eae6ff;
+                </div>
 
-    border-radius: 8px;
 
-    font-size: 8px;
+                <label>
+                    NO AR
+                </label>
 
-    font-weight: 900;
 
-    letter-spacing: 1px;
-}
+            </div>
 
-/* =========================
-   DESTAQUE
-========================= */
 
-.highlight {
-    display: grid;
 
-    grid-template-columns:
-        1fr
-        1fr;
+            <div class="schedule-item">
 
-    align-items: center;
 
-    gap: 35px;
-}
+                <div class="schedule-time">
+                    09:00
+                </div>
 
-.highlight p {
-    max-width: 530px;
 
-    margin:
-        15px 0 25px;
+                <div>
 
-    color: var(--cinza);
+                    <strong>
+                        Manhã de Forró
+                    </strong>
 
-    font-size: 13px;
 
-    line-height: 1.7;
-}
+                    <span>
+                        Os maiores sucessos do forró.
+                    </span>
 
-.sound-visual {
-    min-height: 330px;
+                </div>
 
-    display: flex;
 
-    align-items: center;
+                <label>
+                    MÚSICA
+                </label>
 
-    justify-content: center;
 
-    flex-direction: column;
+            </div>
 
-    position: relative;
 
-    overflow: hidden;
 
-    border-radius: 30px;
+            <div class="schedule-item">
 
-    color: white;
 
-    background:
-        radial-gradient(
-            circle at center,
-            #9585ff,
-            #3e2fa4 55%,
-            #10162b
-        );
+                <div class="schedule-time">
+                    12:00
+                </div>
 
-    box-shadow: var(--sombra);
-}
 
-.wave {
-    height: 120px;
+                <div>
 
-    display: flex;
+                    <strong>
+                        JRV Conexão
+                    </strong>
 
-    align-items: center;
 
-    gap: 7px;
+                    <span>
+                        Informação, música e entretenimento.
+                    </span>
 
-    margin-bottom: 25px;
-}
+                </div>
 
-.wave i {
-    width: 6px;
 
-    border-radius: 8px;
+                <label>
+                    AO VIVO
+                </label>
 
-    background: white;
 
-    animation:
-        equalizer
-        1s
-        infinite
-        alternate;
-}
+            </div>
 
-.wave i:nth-child(1) { height: 25px; }
-.wave i:nth-child(2) { height: 55px; animation-delay: .1s; }
-.wave i:nth-child(3) { height: 95px; animation-delay: .2s; }
-.wave i:nth-child(4) { height: 45px; animation-delay: .3s; }
-.wave i:nth-child(5) { height: 75px; animation-delay: .4s; }
-.wave i:nth-child(6) { height: 110px; animation-delay: .5s; }
-.wave i:nth-child(7) { height: 70px; animation-delay: .6s; }
-.wave i:nth-child(8) { height: 100px; animation-delay: .7s; }
-.wave i:nth-child(9) { height: 50px; animation-delay: .8s; }
-.wave i:nth-child(10) { height: 80px; animation-delay: .9s; }
-.wave i:nth-child(11) { height: 30px; animation-delay: 1s; }
 
-.sound-visual > strong {
-    font-size: 11px;
 
-    letter-spacing: 3px;
-}
+            <div class="schedule-item">
 
-/* =========================
-   CONTATO
-========================= */
 
-.contact {
-    padding:
-        35px
-        45px;
+                <div class="schedule-time">
+                    15:00
+                </div>
 
-    display: flex;
 
-    align-items: center;
+                <div>
 
-    justify-content: space-between;
+                    <strong>
+                        Tarde de Forró
+                    </strong>
 
-    gap: 30px;
 
-    color: white;
+                    <span>
+                        Muito ritmo para sua tarde.
+                    </span>
 
-    border-radius: 30px;
+                </div>
 
-    background:
-        radial-gradient(
-            circle at 85% 20%,
-            rgba(108,92,231,.55),
-            transparent 30%
-        ),
-        #0b1328;
 
-    box-shadow: var(--sombra);
-}
+                <label>
+                    FORRÓ
+                </label>
 
-.contact h2 {
-    margin-bottom: 10px;
-}
 
-.contact p {
-    color: #aeb6c9;
+            </div>
 
-    font-size: 13px;
-}
 
-.contact-buttons {
-    display: flex;
 
-    gap: 10px;
+            <div class="schedule-item">
 
-    flex-shrink: 0;
-}
 
-/* =========================
-   RODAPÉ
-========================= */
+                <div class="schedule-time">
+                    18:00
+                </div>
 
-footer {
-    padding: 30px 24px;
 
-    color: #aeb6ca;
+                <div>
 
-    background: #080e20;
-}
+                    <strong>
+                        Especial JRV
+                    </strong>
 
-.footer-content {
-    max-width: 1200px;
 
-    margin: auto;
+                    <span>
+                        Os destaques da rádio.
+                    </span>
 
-    display: flex;
+                </div>
 
-    align-items: center;
 
-    justify-content: space-between;
+                <label>
+                    ESPECIAL
+                </label>
 
-    gap: 20px;
-}
 
-.footer-content p,
-.footer-content > a {
-    font-size: 10px;
-}
+            </div>
 
-.footer-content > a {
-    color: white;
 
-    font-weight: 800;
-}
 
-/* =========================
-   TOAST
-========================= */
+            <div class="schedule-item">
 
-.toast {
-    position: fixed;
 
-    left: 50%;
+                <div class="schedule-time">
+                    21:00
+                </div>
 
-    bottom: 25px;
 
-    transform:
-        translate(-50%, 20px);
+                <div>
 
-    padding: 13px 18px;
+                    <strong>
+                        Noite de Forró
+                    </strong>
 
-    color: white;
 
-    background: #11182d;
+                    <span>
+                        A noite começa com muita música.
+                    </span>
 
-    border-radius: 12px;
+                </div>
 
-    font-size: 11px;
 
-    opacity: 0;
+                <label>
+                    FORRÓ
+                </label>
 
-    pointer-events: none;
 
-    transition: .25s;
+            </div>
 
-    z-index: 5000;
-}
 
-.toast.show {
-    opacity: 1;
+        </div>
 
-    transform:
-        translate(-50%, 0);
-}
 
-/* =========================
-   RESPONSIVO
-========================= */
+    </div>
 
-@media (max-width: 950px) {
 
-    nav {
-        gap: 14px;
-    }
+</section>
 
-    .hero {
-        grid-template-columns: 1fr;
-    }
 
-    .hero-visual {
-        max-width: 700px;
 
-        width: 100%;
+<!-- =====================================================
+     DESTAQUES
+===================================================== -->
 
-        margin: auto;
-    }
+<section
+    class="section"
+    id="destaques"
+>
 
-    .player-layout {
-        grid-template-columns: 1fr;
-    }
 
-    .highlight {
-        grid-template-columns: 1fr;
-    }
+    <div class="highlight">
 
-    .schedule {
-        grid-template-columns: 1fr;
-    }
 
-}
+        <div>
 
-@media (max-width: 700px) {
 
-    .topbar {
-        height: 70px;
-    }
+            <span>
+                DESTAQUE JRV
+            </span>
 
-    .menu-button {
-        display: block;
-    }
 
-    nav {
-        display: none;
+            <h2>
 
-        position: absolute;
+                Aqui o forró
 
-        top: 78px;
+                <strong>
+                    não para.
+                </strong>
 
-        left: 12px;
-        right: 12px;
+            </h2>
 
-        padding: 13px;
 
-        flex-direction: column;
+            <p>
 
-        gap: 2px;
+                Um espaço para divulgar
+                eventos, artistas,
+                notícias, festas,
+                parceiros e novidades
+                da JRV Rádio Web.
 
-        background: white;
+            </p>
 
-        border: 1px solid var(--borda);
 
-        border-radius: 16px;
+            <a
+                href="#contato"
+                class="button primary"
+            >
 
-        box-shadow: var(--sombra);
-    }
+                FALE COM A JRV
 
-    nav.open {
-        display: flex;
-    }
+            </a>
 
-    nav a {
-        padding: 12px;
-    }
 
-    .live-button {
-        display: none;
-    }
+        </div>
 
-    .hero {
-        min-height: auto;
 
-        padding-top: 50px;
-    }
 
-    .hero h1 {
-        letter-spacing: -2px;
-    }
+        <div class="sound-visual">
 
-    .hero-content > p {
-        font-size: 14px;
-    }
 
-    .statistics {
-        gap: 20px;
-    }
+            <div class="wave">
 
-    .radio-cover {
-        height: 105vw;
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
+                <i></i>
 
-        max-height: 480px;
+            </div>
 
-        min-height: 320px;
-    }
 
-    .cover-logo {
-        width: 105px;
-        height: 105px;
+            <strong>
 
-        font-size: 28px;
-    }
+                ♫ JRV • FORRÓ • ALEGRIA ♫
 
-    .cover-title {
-        font-size: 22px;
-    }
+            </strong>
 
-    .cover-subtitle {
-        font-size: 8px;
-    }
 
-    .section {
-        padding:
-            75px 20px;
-    }
+        </div>
 
-    .section-title {
-        display: block;
-    }
 
-    .section-title > p {
-        margin-top: 12px;
-    }
+    </div>
 
-    .player {
-        padding: 25px 17px;
-    }
 
-    .vinyl {
-        width: 155px;
-        height: 155px;
-    }
+</section>
 
-    .vinyl-center {
-        width: 63px;
-        height: 63px;
-    }
 
-    .schedule-item {
-        grid-template-columns:
-            55px
-            1fr;
-    }
 
-    .schedule-item label {
-        grid-column: 2;
+<!-- =====================================================
+     CONTATO
+===================================================== -->
 
-        justify-self: start;
-    }
+<section
+    class="section"
+    id="contato"
+>
 
-    .contact {
-        padding: 30px 24px;
 
-        flex-direction: column;
+    <div class="contact">
 
-        align-items: flex-start;
-    }
 
-    .contact-buttons {
-        width: 100%;
+        <div>
 
-        flex-direction: column;
-    }
 
-    .footer-content {
-        flex-direction: column;
+            <span>
+                CONTATO
+            </span>
 
-        text-align: center;
-    }
 
-}
+            <h2>
 
-@media (max-width: 420px) {
+                Fale com a
 
-    .logo-text strong {
-        font-size: 12px;
-    }
+                <strong>
+                    JRV.
+                </strong>
 
-    .hero h1 {
-        font-size: 42px;
-    }
+            </h2>
 
-    .hero-buttons {
-        flex-direction: column;
-    }
 
-    .button {
-        width: 100%;
-    }
+            <p>
 
-    .statistics {
-        gap: 15px;
-    }
+                Quer anunciar,
+                divulgar seu evento
+                ou falar com a equipe
+                da rádio?
 
-}
-```
+            </p>
+
+
+        </div>
+
+
+
+        <div class="contact-buttons">
+
+
+            <a
+                href="https://wa.me/"
+                target="_blank"
+                rel="noopener"
+                class="button primary"
+            >
+
+                WhatsApp
+
+            </a>
+
+
+
+            <a
+                href="https://www.instagram.com/"
+                target="_blank"
+                rel="noopener"
+                class="button outline"
+            >
+
+                Instagram
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+
+</main>
+
+
+
+<!-- =====================================================
+     RODAPÉ
+===================================================== -->
+
+<footer>
+
+
+    <div class="footer-content">
+
+
+        <div class="logo">
+
+
+            <div class="logo-box">
+
+                JRV
+
+            </div>
+
+
+            <div class="logo-text">
+
+
+                <strong>
+                    JRV RÁDIO WEB
+                </strong>
+
+
+                <span>
+                    Forró, música e alegria
+                </span>
+
+
+            </div>
+
+
+        </div>
+
+
+
+        <p>
+
+            ©
+            <span id="year"></span>
+            JRV Rádio Web.
+            Todos os direitos reservados.
+
+        </p>
+
+
+
+        <a href="#inicio">
+
+            Voltar ao topo ↑
+
+        </a>
+
+
+    </div>
+
+
+</footer>
+
+
+
+<!-- =====================================================
+     AVISO
+===================================================== -->
+
+<div
+    class="toast"
+    id="toast"
+>
+</div>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="script.js"></script>
+
+
+</body>
+
+</html>
