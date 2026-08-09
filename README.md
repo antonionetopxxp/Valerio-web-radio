@@ -39,6 +39,31 @@ O projeto possui:
 ✅ Instagram  
 ✅ WhatsApp  
 ✅ Compatibilidade com GitHub Pages  
+# Padrões de Desenvolvimento
+
+## Issues
+- [ ] Correção de bug X: #ISSUE_NUMBER
+- [ ] Melhoria Y: #ISSUE_NUMBER
+- [ ] Nova função Z: #ISSUE_NUMBER
+
+## PRs
+- [ ] PR para correção: #PR_NUMBER
+- [ ] PR para melhoria: #PR_NUMBER
+- [ ] PR para nova função: #PR_NUMBER
+
+## Observabilidade
+- Sentry configurado
+- Datadog/NewRelic implementado
+- OpenTelemetry ativado
+
+## Qualidade
+- Arch-contract validado
+- Biome/Comlint/Knip/Stryke configurado
+
+## Testes
+- Unitários: Jest/Pytest
+- Integração: Cypress/Playwright
+- End-to-end: Playwright/Robot Framework
 
 ---
 
