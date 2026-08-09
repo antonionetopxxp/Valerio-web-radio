@@ -1,11 +1,28 @@
-
-```javascript
 /* =====================================================
-   NTP RÁDIO WEB
-   PLAYER + MENU + COMPARTILHAMENTO
+   JRV RÁDIO WEB
+   JAVASCRIPT COMPLETO
 ===================================================== */
 
-const audio = document.getElementById("radioAudio");
+"use strict";
+
+
+/* =====================================================
+   CONFIGURAÇÃO
+===================================================== */
+
+const RADIO_STREAM =
+    "https://stream.zeno.fm/elhz4znig9wuv";
+
+const RECONNECT_TIME =
+    5000;
+
+
+/* =====================================================
+   ELEMENTOS
+===================================================== */
+
+const audio =
+    document.getElementById("radioAudio");
 
 const playButton =
     document.getElementById("playButton");
@@ -19,17 +36,11 @@ const volumeControl =
 const shareButton =
     document.getElementById("shareButton");
 
+const player =
+    document.querySelector(".player");
+
 const playerMessage =
     document.getElementById("playerMessage");
-
-const toast =
-    document.getElementById("toast");
-
-const menuButton =
-    document.getElementById("menuButton");
-
-const menu =
-    document.getElementById("menu");
 
 const musicTitle =
     document.getElementById("musicTitle");
@@ -37,13 +48,53 @@ const musicTitle =
 const musicArtist =
     document.getElementById("musicArtist");
 
+const menuButton =
+    document.getElementById("menuButton");
+
+const menu =
+    document.getElementById("menu");
+
+const toast =
+    document.getElementById("toast");
+
+const year =
+    document.getElementById("year");
+
+
+/* =====================================================
+   VERIFICAÇÃO
+===================================================== */
+
+if (!audio) {
+
+    console.error(
+        "JRV Rádio Web: elemento de áudio não encontrado."
+    );
+
+}
+
+
+/* =====================================================
+   CONFIGURAÇÃO DO ÁUDIO
+===================================================== */
+
+if (audio) {
+
+    audio.src =
+        RADIO_STREAM;
+
+    audio.volume =
+        0.8;
+
+    audio.preload =
+        "none";
+
+}
+
 
 /* =====================================================
    ANO AUTOMÁTICO
 ===================================================== */
-
-const year =
-    document.getElementById("year");
 
 if (year) {
 
@@ -54,22 +105,41 @@ if (year) {
 
 
 /* =====================================================
+   STATUS DO PLAYER
+===================================================== */
+
+function setPlayerMessage(message) {
+
+    if (!playerMessage) {
+        return;
+    }
+
+    playerMessage.textContent =
+        message;
+}
+
+
+/* =====================================================
    TOAST
 ===================================================== */
 
+let toastTimer;
+
+
 function showToast(message) {
 
-    if (!toast) return;
+    if (!toast) {
+        return;
+    }
 
-    toast.textContent = message;
+    toast.textContent =
+        message;
 
     toast.classList.add("show");
 
-    clearTimeout(
-        window.ntpToastTimer
-    );
+    clearTimeout(toastTimer);
 
-    window.ntpToastTimer =
+    toastTimer =
         setTimeout(() => {
 
             toast.classList.remove("show");
@@ -80,20 +150,34 @@ function showToast(message) {
 
 
 /* =====================================================
-   ATUALIZAR BOTÃO
+   ATUALIZAR BOTÃO PLAY
 ===================================================== */
 
-function updatePlayButton() {
+function updatePlayButton(isPlaying) {
 
-    if (!audio || !playButton) return;
+    if (!playButton) {
+        return;
+    }
 
-    if (audio.paused) {
+    if (isPlaying) {
 
-        playButton.textContent = "▶";
+        playButton.textContent =
+            "❚❚";
+
+        playButton.setAttribute(
+            "aria-label",
+            "Pausar rádio"
+        );
 
     } else {
 
-        playButton.textContent = "Ⅱ";
+        playButton.textContent =
+            "▶";
+
+        playButton.setAttribute(
+            "aria-label",
+            "Tocar rádio"
+        );
 
     }
 
@@ -101,148 +185,184 @@ function updatePlayButton() {
 
 
 /* =====================================================
-   TOCAR / PAUSAR RÁDIO
+   ATUALIZAR MUTE
 ===================================================== */
 
-if (playButton) {
+function updateMuteButton() {
 
-    playButton.addEventListener(
-        "click",
-        async function () {
+    if (!muteButton || !audio) {
+        return;
+    }
 
-            if (!audio) return;
+    if (audio.muted || audio.volume === 0) {
+
+        muteButton.textContent =
+            "🔇";
+
+        muteButton.setAttribute(
+            "aria-label",
+            "Ativar som"
+        );
+
+    } else {
+
+        muteButton.textContent =
+            "🔊";
+
+        muteButton.setAttribute(
+            "aria-label",
+            "Desativar som"
+        );
+
+    }
+
+}
 
 
-            if (audio.paused) {
+/* =====================================================
+   REPRODUZIR RÁDIO
+===================================================== */
 
-                try {
+let reconnectTimer = null;
 
-                    playerMessage.textContent =
-                        "Conectando à transmissão...";
 
-                    await audio.play();
+async function playRadio() {
 
-                    playerMessage.textContent =
-                        "Você está ouvindo a NTP Rádio Web.";
+    if (!audio) {
+        return;
+    }
 
-                    updatePlayButton();
 
-                }
+    setPlayerMessage(
+        "Conectando à transmissão..."
+    );
 
-                catch (error) {
 
-                    console.error(
-                        "Erro ao iniciar rádio:",
-                        error
-                    );
+    audio.src =
+        RADIO_STREAM;
 
-                    playerMessage.textContent =
-                        "Não foi possível iniciar a transmissão.";
 
-                    showToast(
-                        "Não foi possível iniciar a rádio."
-                    );
+    try {
 
-                    updatePlayButton();
+        await audio.play();
 
-                }
 
-            } else {
+        if (player) {
 
-                audio.pause();
-
-                playerMessage.textContent =
-                    "Transmissão pausada.";
-
-                updatePlayButton();
-
-            }
+            player.classList.add(
+                "playing"
+            );
 
         }
+
+
+        updatePlayButton(true);
+
+
+        setPlayerMessage(
+            "Transmissão ao vivo conectada."
+        );
+
+
+        musicTitle.textContent =
+            "JRV Rádio Web";
+
+
+        musicArtist.textContent =
+            "Forró, música e alegria";
+
+
+    } catch (error) {
+
+        console.error(
+            "Erro ao iniciar a rádio:",
+            error
+        );
+
+
+        if (player) {
+
+            player.classList.remove(
+                "playing"
+            );
+
+        }
+
+
+        updatePlayButton(false);
+
+
+        setPlayerMessage(
+            "Não foi possível iniciar o áudio. Toque novamente."
+        );
+
+
+        showToast(
+            "Não foi possível iniciar a transmissão."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   PAUSAR RÁDIO
+===================================================== */
+
+function pauseRadio() {
+
+    if (!audio) {
+        return;
+    }
+
+
+    audio.pause();
+
+
+    if (player) {
+
+        player.classList.remove(
+            "playing"
+        );
+
+    }
+
+
+    updatePlayButton(false);
+
+
+    setPlayerMessage(
+        "Transmissão pausada. Clique em ▶ para ouvir."
     );
 
 }
 
 
 /* =====================================================
-   EVENTOS DO PLAYER
+   PLAY / PAUSE
 ===================================================== */
 
-if (audio) {
+if (playButton) {
 
-    audio.addEventListener(
-        "play",
-        function () {
+    playButton.addEventListener(
+        "click",
+        async () => {
 
-            updatePlayButton();
-
-            playerMessage.textContent =
-                "Você está ouvindo a NTP Rádio Web.";
-
-        }
-    );
+            if (!audio) {
+                return;
+            }
 
 
-    audio.addEventListener(
-        "playing",
-        function () {
+            if (audio.paused) {
 
-            updatePlayButton();
+                await playRadio();
 
-            playerMessage.textContent =
-                "NTP Rádio Web está AO VIVO.";
+            } else {
 
-        }
-    );
+                pauseRadio();
 
-
-    audio.addEventListener(
-        "pause",
-        function () {
-
-            updatePlayButton();
-
-            playerMessage.textContent =
-                "Transmissão pausada.";
-
-        }
-    );
-
-
-    audio.addEventListener(
-        "waiting",
-        function () {
-
-            playerMessage.textContent =
-                "Aguardando o sinal da rádio...";
-
-        }
-    );
-
-
-    audio.addEventListener(
-        "stalled",
-        function () {
-
-            playerMessage.textContent =
-                "Reconectando à transmissão...";
-
-        }
-    );
-
-
-    audio.addEventListener(
-        "error",
-        function () {
-
-            playerMessage.textContent =
-                "Erro na transmissão. Tente novamente.";
-
-            showToast(
-                "Verifique o sinal da rádio."
-            );
-
-            updatePlayButton();
+            }
 
         }
     );
@@ -258,17 +378,33 @@ if (muteButton) {
 
     muteButton.addEventListener(
         "click",
-        function () {
+        () => {
 
-            if (!audio) return;
+            if (!audio) {
+                return;
+            }
+
 
             audio.muted =
                 !audio.muted;
 
-            muteButton.textContent =
-                audio.muted
-                    ? "🔇"
-                    : "🔊";
+
+            updateMuteButton();
+
+
+            if (audio.muted) {
+
+                showToast(
+                    "Som desativado."
+                );
+
+            } else {
+
+                showToast(
+                    "Som ativado."
+                );
+
+            }
 
         }
     );
@@ -284,26 +420,32 @@ if (volumeControl) {
 
     volumeControl.addEventListener(
         "input",
-        function () {
+        () => {
 
-            if (!audio) return;
+            if (!audio) {
+                return;
+            }
 
-            audio.volume =
+
+            const volume =
                 Number(
                     volumeControl.value
                 );
 
-            if (
-                audio.volume > 0 &&
-                audio.muted
-            ) {
 
-                audio.muted = false;
+            audio.volume =
+                volume;
 
-                muteButton.textContent =
-                    "🔊";
+
+            if (volume > 0) {
+
+                audio.muted =
+                    false;
 
             }
+
+
+            updateMuteButton();
 
         }
     );
@@ -312,33 +454,317 @@ if (volumeControl) {
 
 
 /* =====================================================
-   CONFIGURAÇÃO INICIAL
+   EVENTO: PLAY
 ===================================================== */
 
 if (audio) {
 
-    audio.volume = 0.8;
+    audio.addEventListener(
+        "play",
+        () => {
+
+            if (player) {
+
+                player.classList.add(
+                    "playing"
+                );
+
+            }
+
+
+            updatePlayButton(true);
+
+
+            setPlayerMessage(
+                "JRV Rádio Web está no ar."
+            );
+
+        }
+    );
+
+
+/* =====================================================
+   EVENTO: PAUSE
+===================================================== */
+
+    audio.addEventListener(
+        "pause",
+        () => {
+
+            if (player) {
+
+                player.classList.remove(
+                    "playing"
+                );
+
+            }
+
+
+            updatePlayButton(false);
+
+        }
+    );
+
+
+/* =====================================================
+   EVENTO: CARREGANDO
+===================================================== */
+
+    audio.addEventListener(
+        "loadstart",
+        () => {
+
+            setPlayerMessage(
+                "Conectando à JRV Rádio Web..."
+            );
+
+        }
+    );
+
+
+/* =====================================================
+   EVENTO: ESPERANDO DADOS
+===================================================== */
+
+    audio.addEventListener(
+        "waiting",
+        () => {
+
+            setPlayerMessage(
+                "Carregando transmissão..."
+            );
+
+        }
+    );
+
+
+/* =====================================================
+   EVENTO: TOCANDO
+===================================================== */
+
+    audio.addEventListener(
+        "playing",
+        () => {
+
+            if (player) {
+
+                player.classList.add(
+                    "playing"
+                );
+
+            }
+
+
+            updatePlayButton(true);
+
+
+            setPlayerMessage(
+                "🔴 AO VIVO • JRV Rádio Web"
+            );
+
+        }
+    );
+
+
+/* =====================================================
+   EVENTO: ERRO
+===================================================== */
+
+    audio.addEventListener(
+        "error",
+        () => {
+
+            console.error(
+                "Erro no streaming da JRV.",
+                audio.error
+            );
+
+
+            if (player) {
+
+                player.classList.remove(
+                    "playing"
+                );
+
+            }
+
+
+            updatePlayButton(false);
+
+
+            setPlayerMessage(
+                "Falha na transmissão. Tentando reconectar..."
+            );
+
+
+            scheduleReconnect();
+
+        }
+    );
+
+
+/* =====================================================
+   EVENTO: FINALIZOU
+===================================================== */
+
+    audio.addEventListener(
+        "ended",
+        () => {
+
+            if (player) {
+
+                player.classList.remove(
+                    "playing"
+                );
+
+            }
+
+
+            updatePlayButton(false);
+
+
+            setPlayerMessage(
+                "A transmissão foi encerrada. Tentando reconectar..."
+            );
+
+
+            scheduleReconnect();
+
+        }
+    );
 
 }
 
 
 /* =====================================================
-   COMPARTILHAR
+   RECONEXÃO
+===================================================== */
+
+function scheduleReconnect() {
+
+    if (reconnectTimer) {
+        return;
+    }
+
+
+    reconnectTimer =
+        setTimeout(
+            async () => {
+
+                reconnectTimer =
+                    null;
+
+
+                if (
+                    audio &&
+                    !audio.paused
+                ) {
+
+                    await reconnectRadio();
+
+                }
+
+            },
+            RECONNECT_TIME
+        );
+
+}
+
+
+/* =====================================================
+   RECONEXÃO DA RÁDIO
+===================================================== */
+
+async function reconnectRadio() {
+
+    if (!audio) {
+        return;
+    }
+
+
+    try {
+
+        setPlayerMessage(
+            "Reconectando à transmissão..."
+        );
+
+
+        audio.pause();
+
+
+        audio.src =
+            RADIO_STREAM;
+
+
+        audio.load();
+
+
+        await audio.play();
+
+
+        if (player) {
+
+            player.classList.add(
+                "playing"
+            );
+
+        }
+
+
+        updatePlayButton(true);
+
+
+        setPlayerMessage(
+            "🔴 AO VIVO • JRV Rádio Web"
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Reconexão falhou:",
+            error
+        );
+
+
+        if (player) {
+
+            player.classList.remove(
+                "playing"
+            );
+
+        }
+
+
+        updatePlayButton(false);
+
+
+        setPlayerMessage(
+            "Não foi possível reconectar."
+        );
+
+    }
+
+}
+
+
+/* =====================================================
+   COMPARTILHAMENTO
 ===================================================== */
 
 if (shareButton) {
 
     shareButton.addEventListener(
         "click",
-        async function () {
+        async () => {
 
             const shareData = {
 
                 title:
-                    "NTP Rádio Web",
+                    "JRV Rádio Web",
 
                 text:
-                    "Ouça a NTP Rádio Web ao vivo!",
+                    "Ouça a JRV Rádio Web - Forró, música e alegria!",
 
                 url:
                     window.location.href
@@ -356,13 +782,12 @@ if (shareButton) {
                         shareData
                     );
 
-                }
-
-                else {
+                } else {
 
                     await navigator.clipboard.writeText(
                         window.location.href
                     );
+
 
                     showToast(
                         "Link da rádio copiado!"
@@ -370,9 +795,7 @@ if (shareButton) {
 
                 }
 
-            }
-
-            catch (error) {
+            } catch (error) {
 
                 console.log(
                     "Compartilhamento cancelado."
@@ -390,33 +813,49 @@ if (shareButton) {
    MENU MOBILE
 ===================================================== */
 
-if (menuButton && menu) {
+if (
+    menuButton &&
+    menu
+) {
 
     menuButton.addEventListener(
         "click",
-        function () {
+        () => {
 
-            menu.classList.toggle(
-                "open"
+            const opened =
+                menu.classList.toggle(
+                    "open"
+                );
+
+
+            menuButton.setAttribute(
+                "aria-expanded",
+                opened
             );
 
         }
     );
 
 
-    const links =
+    const menuLinks =
         menu.querySelectorAll("a");
 
 
-    links.forEach(
-        function (link) {
+    menuLinks.forEach(
+        link => {
 
             link.addEventListener(
                 "click",
-                function () {
+                () => {
 
                     menu.classList.remove(
                         "open"
+                    );
+
+
+                    menuButton.setAttribute(
+                        "aria-expanded",
+                        "false"
                     );
 
                 }
@@ -429,20 +868,23 @@ if (menuButton && menu) {
 
 
 /* =====================================================
-   ATUALIZAR MÚSICA
-=====================================================
-
-   Esta função fica preparada para quando você
-   conectar uma API de metadados do Zeno.fm.
-
-   Exemplo:
-
-   updateNowPlaying(
-       "Nome da música",
-       "Nome do artista"
-   );
-
+   ATUALIZAÇÃO DO NOME DA MÚSICA
 ===================================================== */
+
+/*
+   Neste momento mostramos o nome da rádio.
+
+   O stream da Zeno.fm pode fornecer metadados
+   da música separadamente do áudio.
+
+   Quando tivermos o endpoint de metadados da
+   sua estação, esta função poderá atualizar:
+
+   - Nome da música
+   - Artista
+   - Capa
+*/
+
 
 function updateNowPlaying(
     title,
@@ -452,8 +894,7 @@ function updateNowPlaying(
     if (musicTitle) {
 
         musicTitle.textContent =
-            title ||
-            "NTP Rádio Web";
+            title || "JRV Rádio Web";
 
     }
 
@@ -461,8 +902,7 @@ function updateNowPlaying(
     if (musicArtist) {
 
         musicArtist.textContent =
-            artist ||
-            "Sua rádio na internet";
+            artist || "Forró, música e alegria";
 
     }
 
@@ -473,15 +913,42 @@ function updateNowPlaying(
    INICIALIZAÇÃO
 ===================================================== */
 
-updatePlayButton();
+updatePlayButton(false);
 
+updateMuteButton();
+
+updateNowPlaying(
+    "JRV Rádio Web",
+    "Forró, música e alegria"
+);
+
+
+/* =====================================================
+   PREVENIR ERROS DE PROMISE
+===================================================== */
+
+window.addEventListener(
+    "unhandledrejection",
+    event => {
+
+        console.warn(
+            "JRV Rádio Web:",
+            event.reason
+        );
+
+    }
+);
+
+
+/* =====================================================
+   FINAL
+===================================================== */
 
 console.log(
-    "NTP Rádio Web carregada com sucesso."
+    "🎙️ JRV Rádio Web carregada com sucesso!"
 );
 
 console.log(
-    "Stream:",
-    "https://stream.zeno.fm/elhz4znig9wuv"
+    "📡 Stream:",
+    RADIO_STREAM
 );
-```
