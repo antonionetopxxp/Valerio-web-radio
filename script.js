@@ -1,4 +1,3 @@
-
 // Observability
 import * as Sentry from '@sentry/browser';
 
@@ -38,4 +37,11 @@ function animateElement(element, animationClass) {
 // Quality checks
 function validateCode() {
     // Biome/Comlint/Knip/Stryke validation logic
+}
+
+// Polyfill for IntersectionObserver
+if (!window.IntersectionObserver) {
+    const script = document.createElement('script');
+    script.src = 'https://polyfill.io/v3/polyfill.min.js';
+    document.head.appendChild(script);
 }
