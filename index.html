@@ -2,45 +2,73 @@
 <html lang="pt-BR">
 
 <head>
+
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
-    <meta name="theme-color"
-          content="#6c5ce7">
+    <meta
+        name="theme-color"
+        content="#ff7a00"
+    >
 
-    <meta name="description"
-          content="NTP Rádio Web - Música, informação e entretenimento 24 horas.">
+    <meta
+        name="description"
+        content="JRV Rádio Web - Forró, alegria, música e informação."
+    >
 
-    <title>NTP Rádio Web | Ao Vivo</title>
+    <title>
+        JRV Rádio Web | Forró e Alegria
+    </title>
 
-    <link rel="icon"
-          href="assets/favicon.svg"
-          type="image/svg+xml">
+    <link
+        rel="icon"
+        href="assets/favicon.svg"
+        type="image/svg+xml"
+    >
 
-    <link rel="preconnect"
-          href="https://fonts.googleapis.com">
+    <!-- FONTES -->
 
-    <link rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossorigin>
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap"
-          rel="stylesheet">
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
 
-    <link rel="stylesheet"
-          href="style.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- CSS -->
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
 
 
 <body>
+
 
 <!-- =====================================================
      FUNDO
 ===================================================== -->
 
 <div class="background-glow"></div>
+
+<div class="background-glow second"></div>
+
 
 
 <!-- =====================================================
@@ -49,21 +77,26 @@
 
 <header class="topbar">
 
-    <a href="#inicio"
-       class="logo">
+    <a
+        href="#inicio"
+        class="logo"
+    >
 
         <div class="logo-box">
-            NTP
+
+            JRV
+
         </div>
+
 
         <div class="logo-text">
 
             <strong>
-                NTP RÁDIO WEB
+                JRV RÁDIO WEB
             </strong>
 
             <span>
-                Sua rádio na internet
+                Forró, música e alegria
             </span>
 
         </div>
@@ -71,10 +104,15 @@
     </a>
 
 
+
+    <!-- MENU MOBILE -->
+
     <button
         class="menu-button"
         id="menuButton"
-        aria-label="Abrir menu">
+        aria-label="Abrir menu"
+        aria-expanded="false"
+    >
 
         <span></span>
         <span></span>
@@ -82,6 +120,9 @@
 
     </button>
 
+
+
+    <!-- MENU -->
 
     <nav id="menu">
 
@@ -97,7 +138,7 @@
             Programação
         </a>
 
-        <a href="#destaque">
+        <a href="#destaques">
             Destaques
         </a>
 
@@ -108,8 +149,13 @@
     </nav>
 
 
-    <a href="#radio"
-       class="live-button">
+
+    <!-- AO VIVO -->
+
+    <a
+        href="#radio"
+        class="live-button"
+    >
 
         <span class="live-dot"></span>
 
@@ -128,50 +174,70 @@
 <main>
 
 
+
 <!-- =====================================================
      HERO
 ===================================================== -->
 
 <section
     class="hero"
-    id="inicio">
+    id="inicio"
+>
+
+
+    <!-- TEXTO -->
 
     <div class="hero-content">
+
 
         <div class="eyebrow">
 
             <span class="live-dot"></span>
 
-            NTP RÁDIO WEB • TRANSMISSÃO AO VIVO
+            JRV RÁDIO WEB • AO VIVO
 
         </div>
 
 
+
         <h1>
 
-            A sua rádio.
-
+            O ritmo do
             <span>
-                O seu som.
+                forró.
+            </span>
+
+            A alegria
+            <span>
+                da JRV.
             </span>
 
         </h1>
 
 
+
         <p>
 
-            Música, informação e entretenimento
-            para acompanhar você todos os dias.
+            A rádio que leva música,
+            forró, informação e muita
+            alegria para você,
+            onde estiver.
 
         </p>
 
 
+
+        <!-- BOTÕES -->
+
         <div class="hero-buttons">
 
-            <a href="#radio"
-               class="button primary">
 
-                <span>
+            <a
+                href="#radio"
+                class="button primary"
+            >
+
+                <span class="play-icon">
                     ▶
                 </span>
 
@@ -180,8 +246,11 @@
             </a>
 
 
-            <a href="#programacao"
-               class="button secondary">
+
+            <a
+                href="#programacao"
+                class="button secondary"
+            >
 
                 VER PROGRAMAÇÃO
 
@@ -190,7 +259,11 @@
         </div>
 
 
+
+        <!-- ESTATÍSTICAS -->
+
         <div class="statistics">
+
 
             <div>
 
@@ -205,23 +278,25 @@
             </div>
 
 
+
             <div>
 
                 <strong>
-                    ♪
+                    ♫
                 </strong>
 
                 <span>
-                    MÚSICA
+                    FORRÓ
                 </span>
 
             </div>
 
 
+
             <div>
 
                 <strong>
-                    NTP
+                    JRV
                 </strong>
 
                 <span>
@@ -230,25 +305,32 @@
 
             </div>
 
+
         </div>
+
 
     </div>
 
 
 
     <!-- =================================================
-         CARD DO HERO
+         ARTE PRINCIPAL
     ================================================= -->
 
     <div class="hero-visual">
 
+
         <div class="radio-card">
+
+
+            <!-- CABEÇALHO -->
 
             <div class="radio-card-header">
 
                 <strong>
-                    NTP RÁDIO WEB
+                    JRV RÁDIO WEB
                 </strong>
+
 
                 <span>
 
@@ -261,37 +343,81 @@
             </div>
 
 
+
+            <!-- ARTE -->
+
             <div class="radio-cover">
 
-                <div class="cover-gradient">
+
+                <div class="cover-decoration decoration-one">
+                    ✦
+                </div>
+
+
+                <div class="cover-decoration decoration-two">
+                    ✦
+                </div>
+
+
+                <div class="cover-content">
+
 
                     <div class="cover-logo">
-                        NTP
+
+                        JRV
+
                     </div>
+
 
                     <div class="cover-title">
+
                         RÁDIO WEB
+
                     </div>
 
+
                     <div class="cover-subtitle">
-                        SUA RÁDIO NA INTERNET
+
+                        FORRÓ • MÚSICA • ALEGRIA
+
                     </div>
+
+
+                    <div class="cover-note">
+
+                        ♪ ♫ ♪
+
+                    </div>
+
 
                 </div>
 
+
+                <!-- NOTAS MUSICAIS -->
 
                 <div class="music-symbol symbol-one">
                     ♪
                 </div>
 
+
                 <div class="music-symbol symbol-two">
                     ♫
                 </div>
 
+
+                <div class="music-symbol symbol-three">
+                    ♪
+                </div>
+
+
             </div>
 
 
+
+            <!-- RODAPÉ DA ARTE -->
+
             <div class="radio-card-footer">
+
 
                 <div>
 
@@ -300,11 +426,14 @@
                     </small>
 
                     <strong>
-                        NTP Rádio Web
+                        JRV Rádio Web
                     </strong>
 
                 </div>
 
+
+
+                <!-- EQUALIZADOR -->
 
                 <div class="equalizer">
 
@@ -313,14 +442,20 @@
                     <i></i>
                     <i></i>
                     <i></i>
+                    <i></i>
+                    <i></i>
 
                 </div>
 
+
             </div>
+
 
         </div>
 
+
     </div>
+
 
 </section>
 
@@ -332,9 +467,12 @@
 
 <section
     class="section"
-    id="radio">
+    id="radio"
+>
+
 
     <div class="section-title">
+
 
         <div>
 
@@ -342,19 +480,28 @@
                 TRANSMISSÃO
             </span>
 
+
             <h2>
-                Ouça a NTP
+
+                Ouça a JRV
+
                 <strong>
                     ao vivo
                 </strong>
+
             </h2>
 
         </div>
 
+
         <p>
-            Clique no botão para entrar
-            na transmissão da NTP Rádio Web.
+
+            Entre na transmissão
+            e deixe o forró fazer
+            parte do seu dia.
+
         </p>
+
 
     </div>
 
@@ -363,87 +510,116 @@
     <div class="player-layout">
 
 
-        <!-- PLAYER PRINCIPAL -->
+        <!-- =================================================
+             PLAYER PRINCIPAL
+        ================================================= -->
 
         <div class="player">
+
 
             <div class="player-live">
 
                 <span class="live-dot"></span>
 
-                TRANSMISSÃO ONLINE
+                JRV RÁDIO WEB • TRANSMISSÃO ONLINE
 
             </div>
 
+
+
+            <!-- DISCO -->
 
             <div class="vinyl">
 
+
                 <div class="vinyl-center">
 
-                    NTP
+                    JRV
 
                 </div>
+
 
             </div>
 
 
+
+            <!-- MÚSICA -->
+
             <div class="now-playing">
+
 
                 <small>
                     TOCANDO AGORA
                 </small>
 
+
                 <h3 id="musicTitle">
-                    NTP Rádio Web
+                    JRV Rádio Web
                 </h3>
 
+
                 <p id="musicArtist">
-                    Sua rádio na internet
+                    Forró, música e alegria
                 </p>
+
 
             </div>
 
 
-            <!-- BOTÕES -->
+
+            <!-- CONTROLES -->
 
             <div class="player-controls">
 
+
                 <button
                     class="control"
-                    id="muteButton">
+                    id="muteButton"
+                    aria-label="Ativar ou desativar som"
+                >
 
                     🔊
 
                 </button>
 
 
+
                 <button
                     class="play"
-                    id="playButton">
+                    id="playButton"
+                    aria-label="Tocar rádio"
+                >
 
                     ▶
 
                 </button>
 
 
+
                 <button
                     class="control"
-                    id="shareButton">
+                    id="shareButton"
+                    aria-label="Compartilhar rádio"
+                >
 
                     ↗
 
                 </button>
 
+
             </div>
+
 
 
             <!-- VOLUME -->
 
             <div class="volume">
 
+
                 <span>
                     🔈
                 </span>
+
 
                 <input
                     id="volumeControl"
@@ -451,55 +627,76 @@
                     min="0"
                     max="1"
                     step="0.01"
-                    value="0.8">
+                    value="0.8"
+                >
+
 
                 <span>
                     🔊
                 </span>
 
+
             </div>
 
 
+
             <!-- =================================================
-                 STREAM DA NTP RÁDIO WEB
+                 STREAM DA JRV
             ================================================= -->
 
             <audio
                 id="radioAudio"
-                preload="none">
+                preload="none"
+            >
 
                 <source
                     src="https://stream.zeno.fm/elhz4znig9wuv"
-                    type="audio/mpeg">
+                    type="audio/mpeg"
+                >
 
             </audio>
 
 
+
+            <!-- STATUS -->
+
             <div class="player-message">
 
+
                 <strong>
-                    NTP RÁDIO WEB
+                    JRV RÁDIO WEB
                 </strong>
 
+
                 <span id="playerMessage">
-                    Clique em ▶ para ouvir a transmissão.
+
+                    Clique no botão ▶
+                    para iniciar a transmissão.
+
                 </span>
 
+
             </div>
+
 
         </div>
 
 
 
-        <!-- INFORMAÇÕES -->
+        <!-- =================================================
+             INFORMAÇÕES
+        ================================================= -->
 
         <div class="information">
 
-            <div class="info-card purple">
+
+            <div class="info-card orange">
+
 
                 <div class="info-icon">
                     🎙️
                 </div>
+
 
                 <div>
 
@@ -507,25 +704,31 @@
                         AO VIVO
                     </small>
 
+
                     <h3>
-                        NTP Rádio Web
+                        JRV Rádio Web
                     </h3>
 
+
                     <p>
-                        Música, informação
-                        e entretenimento.
+                        O melhor do forró
+                        e muita alegria.
                     </p>
 
                 </div>
 
+
             </div>
+
 
 
             <div class="info-card">
 
+
                 <div class="info-icon">
-                    📻
+                    🪗
                 </div>
+
 
                 <div>
 
@@ -533,14 +736,17 @@
                         PROGRAMAÇÃO
                     </small>
 
+
                     <h3>
-                        Confira nossos horários
+                        Forró o dia inteiro
                     </h3>
 
+
                     <p>
-                        Veja os programas
-                        da NTP Rádio Web.
+                        Confira os horários
+                        dos nossos programas.
                     </p>
+
 
                     <a href="#programacao">
 
@@ -550,21 +756,27 @@
 
                 </div>
 
+
             </div>
+
 
 
             <div class="social-card">
 
+
                 <span>
-                    SIGA A NTP RÁDIO WEB
+                    SIGA A JRV
                 </span>
 
 
                 <div>
 
+
                     <a
                         href="https://www.instagram.com/"
-                        target="_blank">
+                        target="_blank"
+                        rel="noopener"
+                    >
 
                         Instagram
 
@@ -573,19 +785,26 @@
 
                     <a
                         href="https://wa.me/"
-                        target="_blank">
+                        target="_blank"
+                        rel="noopener"
+                    >
 
                         WhatsApp
 
                     </a>
 
+
                 </div>
+
 
             </div>
 
+
         </div>
 
+
     </div>
+
 
 </section>
 
@@ -597,28 +816,42 @@
 
 <section
     class="programacao"
-    id="programacao">
+    id="programacao"
+>
+
 
     <div class="section section-small">
 
+
         <div class="section-title centered">
 
+
             <span>
-                NTP RÁDIO WEB
+                JRV RÁDIO WEB
             </span>
 
+
             <h2>
+
                 Nossa
+
                 <strong>
                     programação
                 </strong>
+
             </h2>
 
+
             <p>
-                Confira os horários dos nossos programas.
+
+                Música, forró e
+                alegria durante todo o dia.
+
             </p>
 
+
         </div>
+
 
 
         <div class="schedule">
@@ -626,129 +859,154 @@
 
             <div class="schedule-item active">
 
+
                 <div class="schedule-time">
                     06:00
                 </div>
 
+
                 <div>
 
                     <strong>
-                        Bom Dia NTP
+                        Bom Dia JRV
                     </strong>
 
+
                     <span>
-                        Música e informação para começar o dia.
+                        Comece o dia com muito forró.
                     </span>
 
                 </div>
+
 
                 <label>
                     NO AR
                 </label>
 
+
             </div>
 
 
 
             <div class="schedule-item">
+
 
                 <div class="schedule-time">
                     09:00
                 </div>
 
+
                 <div>
 
                     <strong>
-                        Manhã NTP
+                        Manhã de Forró
                     </strong>
 
+
                     <span>
-                        Os melhores sons para sua manhã.
+                        Os maiores sucessos do forró.
                     </span>
 
                 </div>
 
+
                 <label>
                     MÚSICA
                 </label>
+
 
             </div>
 
 
 
             <div class="schedule-item">
+
 
                 <div class="schedule-time">
                     12:00
                 </div>
 
+
                 <div>
 
                     <strong>
-                        Conexão NTP
+                        JRV Conexão
                     </strong>
 
+
                     <span>
-                        Informação e entretenimento.
+                        Informação, música e entretenimento.
                     </span>
 
                 </div>
+
 
                 <label>
                     AO VIVO
                 </label>
 
+
             </div>
 
 
 
             <div class="schedule-item">
+
 
                 <div class="schedule-time">
                     15:00
                 </div>
 
+
                 <div>
 
                     <strong>
-                        Tarde Musical
+                        Tarde de Forró
                     </strong>
 
+
                     <span>
-                        Uma seleção especial de músicas.
+                        Muito ritmo para sua tarde.
                     </span>
 
                 </div>
 
+
                 <label>
-                    MÚSICA
+                    FORRÓ
                 </label>
+
 
             </div>
 
 
 
             <div class="schedule-item">
+
 
                 <div class="schedule-time">
                     18:00
                 </div>
 
+
                 <div>
 
                     <strong>
-                        Especial NTP
+                        Especial JRV
                     </strong>
 
+
                     <span>
-                        Destaques e novidades.
+                        Os destaques da rádio.
                     </span>
 
                 </div>
 
+
                 <label>
-                    DESTAQUE
+                    ESPECIAL
                 </label>
+
 
             </div>
 
@@ -756,83 +1014,103 @@
 
             <div class="schedule-item">
 
+
                 <div class="schedule-time">
                     21:00
                 </div>
 
+
                 <div>
 
                     <strong>
-                        Noite NTP
+                        Noite de Forró
                     </strong>
 
+
                     <span>
-                        Música para fechar o seu dia.
+                        A noite começa com muita música.
                     </span>
 
                 </div>
 
+
                 <label>
-                    MÚSICA
+                    FORRÓ
                 </label>
+
 
             </div>
 
+
         </div>
 
+
     </div>
+
 
 </section>
 
 
 
 <!-- =====================================================
-     DESTAQUE
+     DESTAQUES
 ===================================================== -->
 
 <section
     class="section"
-    id="destaque">
+    id="destaques"
+>
+
 
     <div class="highlight">
 
+
         <div>
 
+
             <span>
-                DESTAQUE NTP
+                DESTAQUE JRV
             </span>
+
 
             <h2>
 
-                Uma rádio
+                Aqui o forró
+
                 <strong>
-                    com propósito.
+                    não para.
                 </strong>
 
             </h2>
 
+
             <p>
 
-                Este espaço pode ser usado
-                para divulgar notícias,
-                eventos, campanhas,
-                parceiros e mensagens
-                especiais da NTP Rádio Web.
+                Um espaço para divulgar
+                eventos, artistas,
+                notícias, festas,
+                parceiros e novidades
+                da JRV Rádio Web.
 
             </p>
 
+
             <a
                 href="#contato"
-                class="button primary">
+                class="button primary"
+            >
 
-                FALE COM A NTP
+                FALE COM A JRV
 
             </a>
+
 
         </div>
 
 
+
         <div class="sound-visual">
+
 
             <div class="wave">
 
@@ -850,13 +1128,19 @@
 
             </div>
 
+
             <strong>
-                ♪ NTP RÁDIO WEB ♪
+
+                ♫ JRV • FORRÓ • ALEGRIA ♫
+
             </strong>
+
 
         </div>
 
+
     </div>
+
 
 </section>
 
@@ -868,62 +1152,83 @@
 
 <section
     class="section"
-    id="contato">
+    id="contato"
+>
+
 
     <div class="contact">
 
+
         <div>
+
 
             <span>
                 CONTATO
             </span>
 
+
             <h2>
 
                 Fale com a
+
                 <strong>
-                    NTP.
+                    JRV.
                 </strong>
 
             </h2>
 
+
             <p>
 
-                Quer anunciar, divulgar
-                seu evento ou falar com
-                a equipe da rádio?
+                Quer anunciar,
+                divulgar seu evento
+                ou falar com a equipe
+                da rádio?
 
             </p>
+
 
         </div>
 
 
+
         <div class="contact-buttons">
+
 
             <a
                 href="https://wa.me/"
                 target="_blank"
-                class="button primary">
+                rel="noopener"
+                class="button primary"
+            >
 
                 WhatsApp
 
             </a>
 
 
+
             <a
                 href="https://www.instagram.com/"
                 target="_blank"
-                class="button outline">
+                rel="noopener"
+                class="button outline"
+            >
 
                 Instagram
 
             </a>
 
+
         </div>
+
 
     </div>
 
+
 </section>
+
+
 
 </main>
 
@@ -935,43 +1240,60 @@
 
 <footer>
 
+
     <div class="footer-content">
+
 
         <div class="logo">
 
+
             <div class="logo-box">
-                NTP
+
+                JRV
+
             </div>
+
 
             <div class="logo-text">
 
+
                 <strong>
-                    NTP RÁDIO WEB
+                    JRV RÁDIO WEB
                 </strong>
 
+
                 <span>
-                    Sua rádio na internet
+                    Forró, música e alegria
                 </span>
 
+
             </div>
+
 
         </div>
 
 
+
         <p>
 
-            © <span id="year"></span>
-            NTP Rádio Web.
+            ©
+            <span id="year"></span>
+            JRV Rádio Web.
             Todos os direitos reservados.
 
         </p>
 
 
+
         <a href="#inicio">
+
             Voltar ao topo ↑
+
         </a>
 
+
     </div>
+
 
 </footer>
 
@@ -983,13 +1305,19 @@
 
 <div
     class="toast"
-    id="toast">
+    id="toast"
+>
 </div>
 
 
 
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
 <script src="script.js"></script>
+
 
 </body>
 
-  </html>
+</html>
